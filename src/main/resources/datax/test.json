@@ -1,0 +1,44 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 4
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "mysqlreader",
+          "parameter": {
+            "username": "root",
+            "password": "12345",
+            "connection": [
+              {
+                "jdbcUrl": ["jdbc:mysql://127.0.0.1:3306/test"],
+                "querySql": ["select t.id,t.name,t.status from source t"]
+              }
+            ]
+          }
+        },
+        "writer": {
+          "name": "mysqlwriter",
+          "parameter": {
+            "username": "root",
+            "password": "12345",
+            "writeMode": "insert",
+            "column": ["id","name","status"],
+            "connection": [
+              {
+                "table": [
+                  "target"
+                ],
+                "jdbcUrl": "jdbc:mysql://127.0.0.1:3306/test"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}
+
